@@ -1,0 +1,83 @@
+<section class="module" id="module-3" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">03</span>
+      <h1 class="module-title">Run the loop: explore, test, package</h1>
+      <p class="module-subtitle">The toolkit is a workshop bench: exploration tools on one side, authoring tools on the other.</p>
+    </header>
+
+    <div class="module-body">
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The task factory has two rooms</h2>
+        <div class="flow-animation" data-steps='[
+          {"highlight":"flow-actor-1","label":"Explore the repo and notice a behavior worth testing"},
+          {"highlight":"flow-actor-2","label":"Capture or write instruction.md and grader-guidance.md","packet":true,"from":"actor-1","to":"actor-2"},
+          {"highlight":"flow-actor-3","label":"Run Harbor trials and inspect grade.md","packet":true,"from":"actor-2","to":"actor-3"},
+          {"highlight":"flow-actor-4","label":"Package the tarball for feedback or final submission","packet":true,"from":"actor-3","to":"actor-4"}
+        ]'>
+          <div class="flow-actors">
+            <div class="flow-actor" id="flow-actor-1"><div class="flow-actor-icon">🔎</div><span>Explore</span></div>
+            <div class="flow-actor" id="flow-actor-2"><div class="flow-actor-icon">✍️</div><span>Author</span></div>
+            <div class="flow-actor" id="flow-actor-3"><div class="flow-actor-icon">⚖️</div><span>Grade</span></div>
+            <div class="flow-actor" id="flow-actor-4"><div class="flow-actor-icon">📦</div><span>Submit</span></div>
+          </div>
+          <div class="flow-packet" id="flow-packet"></div>
+          <div class="flow-step-label" id="flow-label">Click "Next Step" to begin</div>
+          <div class="flow-controls"><button class="btn flow-next-btn">Next Step</button><button class="btn flow-reset-btn">Restart</button><span class="flow-progress"></span></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Source excerpt → what it means</h2>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>harbor-run — Run a task via Harbor.
+
+build-workspace.sh — Export the repo at a specific commit into the task workspace.
+
+submit-task.ts — Validate files, check for placeholders, show scores, package the tarball.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl"><span class="term" data-definition="Harbor is the task-running environment that launches the worker and grader agents for a trial.">Harbor</span> is where your task gets exercised.</p>
+              <p class="tl">The workspace script prepares the exact repo version the agent will see.</p>
+              <p class="tl">The submit script is your packaging checkpoint: placeholders, scores, and tarball readiness.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The agents talk through files</h2>
+        <div class="chat-window" id="chat-module3">
+          <div class="chat-messages">
+            <div class="chat-message" data-msg="0" data-sender="author" style="display:none"><div class="chat-avatar" style="background: var(--color-actor-4)">A</div><div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-4)">Author</span><p>I wrote a realistic engineering prompt in instruction.md.</p></div></div>
+            <div class="chat-message" data-msg="1" data-sender="worker" style="display:none"><div class="chat-avatar" style="background: var(--color-actor-1)">W</div><div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-1)">Worker agent</span><p>I will work in the repo, run commands when useful, and leave a trajectory.</p></div></div>
+            <div class="chat-message" data-msg="2" data-sender="grader" style="display:none"><div class="chat-avatar" style="background: var(--color-actor-2)">G</div><div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-2)">Grader agent</span><p>I read grader-guidance.md plus the trajectory and score observable behavior.</p></div></div>
+          </div>
+          <div class="chat-typing" style="display:none"><div class="chat-avatar">?</div><div class="chat-typing-dots"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div></div>
+          <div class="chat-controls"><button class="btn chat-next-btn">Next Message</button><button class="btn chat-all-btn">Play All</button><button class="btn chat-reset-btn">Replay</button><span class="chat-progress"></span></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Quick check</h2>
+        <div class="quiz-container" id="quiz-module3">
+          <div class="quiz-question-block" data-correct="option-a" data-explanation-right="Exactly. grade.md is where you learn what the grader thought, before iterating." data-explanation-wrong="Not quite. The source says to read grade.md first because it explains the grader reasoning.">
+            <h3 class="quiz-question">After a Harbor trial finishes, where should you look first to understand the result?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span><code>grade.md</code>, because it explains the grader's reasoning.</span></button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Only <code>reward.txt</code>, because the number is all that matters.</span></button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>The public internet, because the grader may need external documentation.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module3')">Check Answer</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module3')">Try Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

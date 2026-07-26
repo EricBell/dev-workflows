@@ -1,0 +1,70 @@
+<section class="module" id="module-5" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">05</span>
+      <h1 class="module-title">Submit and revise: feedback is part of the pipeline</h1>
+      <p class="module-subtitle">Treat submission like sending a draft to an editor, not dropping a bottle into the ocean.</p>
+    </header>
+
+    <div class="module-body">
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Feedback requests use a four-part shape</h2>
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-1)"><div class="pattern-icon" style="background: var(--color-actor-1)">1</div><h4 class="pattern-title">What you are working on</h4><p class="pattern-desc">Repo plus the failure or signal you found.</p></div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-2)"><div class="pattern-icon" style="background: var(--color-actor-2)">2</div><h4 class="pattern-title">What feedback you want</h4><p class="pattern-desc">Prompt phrasing, grader structure, calibration, difficulty, or another specific question.</p></div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-4)"><div class="pattern-icon" style="background: var(--color-actor-4)">3</div><h4 class="pattern-title">What is missing</h4><p class="pattern-desc">Tell reviewers which pieces are incomplete so they do not waste attention.</p></div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-5)"><div class="pattern-icon" style="background: var(--color-actor-5)">4</div><h4 class="pattern-title">WIP status note</h4><p class="pattern-desc">For drafts, say what is clearly WIP, known-bad, or closer to done.</p></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Source excerpt → what it means</h2>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>Submitting for feedback is a checkpoint, not a stopping point. After you submit, keep working on your task — refine the prompt, tighten the grader guidance, explore edge cases, and generate reference runs.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">Do not freeze while waiting for a Slack response.</p>
+              <p class="tl">Use feedback submission to expose your current thinking, then continue improving the task.</p>
+              <p class="tl">The best submissions show iteration: prompt, guidance, trials, and packaging all get sharper.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Final mental model</h2>
+        <div class="arch-diagram">
+          <div class="arch-zone arch-zone-browser">
+            <h4 class="arch-zone-label">Task quality loop</h4>
+            <div class="arch-component" data-desc="The prompt must be realistic, grounded in the repo, and not over-hinted." onclick="showArchDesc(this)"><div class="arch-icon">📝</div><span>Prompt</span></div>
+            <div class="arch-component" data-desc="The failure should have a concrete consequence that senior engineers would recognize." onclick="showArchDesc(this)"><div class="arch-icon">🚨</div><span>Meaningful signal</span></div>
+            <div class="arch-component" data-desc="The grader guidance explains strong and weak behavior with self-contained context and local evidence." onclick="showArchDesc(this)"><div class="arch-icon">⚖️</div><span>Grader guidance</span></div>
+            <div class="arch-component" data-desc="Reference runs show whether the task reliably elicits the intended behavior." onclick="showArchDesc(this)"><div class="arch-icon">🔁</div><span>Trials</span></div>
+          </div>
+          <div class="arch-description" id="arch-desc">Click any piece to see why it matters.</div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Quick check</h2>
+        <div class="quiz-container" id="quiz-module5">
+          <div class="quiz-question-block" data-correct="option-c" data-explanation-right="Exactly. The source says to export before every submission so a revision can be rebuilt later." data-explanation-wrong="Not quite. The resubmission flow depends on having the previous save state available.">
+            <h3 class="quiz-question">Before every submission, what habit prevents painful resubmission problems?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Delete the local task folder after uploading the tarball.</span></button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Post a top-level Slack message with no thread.</span></button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Export the save state before submitting, every time.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module5')">Check Answer</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module5')">Try Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

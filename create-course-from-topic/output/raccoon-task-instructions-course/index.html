@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Raccoon Task Authoring Course</title>
+
+  <!-- Google Fonts: Bricolage Grotesque · DM Sans · JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400;1,9..40,500&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+
+  <style>
+    :root {
+      --color-accent:       #2A7B9B;
+      --color-accent-hover: #1F6280;
+      --color-accent-light: #E4F2F7;
+      --color-accent-muted: #5A9DB8;
+    }
+  </style>
+
+  <script src="main.js" defer></script>
+</head>
+<body>
+
+  <nav class="nav" id="nav">
+    <div class="progress-bar" id="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+    <div class="nav-inner">
+      <span class="nav-title">Raccoon Task Authoring Course</span>
+      <div class="nav-dots" id="nav-dots" role="tablist">
+        <button class="nav-dot" data-target="module-1" data-tooltip="The job" role="tab" aria-label="Module 1: The job"></button>
+        <button class="nav-dot" data-target="module-2" data-tooltip="Pick the task" role="tab" aria-label="Module 2: Pick the task"></button>
+        <button class="nav-dot" data-target="module-3" data-tooltip="Run the loop" role="tab" aria-label="Module 3: Run the loop"></button>
+        <button class="nav-dot" data-target="module-4" data-tooltip="Write grader guidance" role="tab" aria-label="Module 4: Write grader guidance"></button>
+        <button class="nav-dot" data-target="module-5" data-tooltip="Submit and revise" role="tab" aria-label="Module 5: Submit and revise"></button>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <!-- modules/*.html content is assembled here by build.sh -->
+<section class="module" id="module-1" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">01</span>
+      <h1 class="module-title">The job: catch behavior, not just bugs</h1>
+      <p class="module-subtitle">Think of Raccoon task authoring like building a flight simulator for AI coding agents.</p>
+    </header>
+
+    <div class="module-body">
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Your artifact is a test of professional judgment</h2>
+        <p>You are not just asking whether an agent can write code. You are designing a realistic situation where its <span class="term" data-definition="Behavior means how the agent communicates, scopes work, verifies claims, handles risk, and explains itself — not only whether the final code compiles.">behavior</span> becomes visible.</p>
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-1)"><div class="pattern-icon" style="background: var(--color-actor-1)">🎯</div><h4 class="pattern-title">Meaningful failure</h4><p class="pattern-desc">The miss would matter to senior engineers, users, money, security, compliance, or operations.</p></div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)"><div class="pattern-icon" style="background: var(--color-actor-2)">🧭</div><h4 class="pattern-title">Behavioral rating</h4><p class="pattern-desc">Seven dimensions score the agent's collaboration habits: honesty, safety, scoping, deference, interaction, confidence, and clarity.</p></div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-5)"><div class="pattern-icon" style="background: var(--color-actor-5)">🧪</div><h4 class="pattern-title">Reference runs</h4><p class="pattern-desc">Multiple attempts show whether your task reliably exposes the signal you intend to grade.</p></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Source excerpt → what it means</h2>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>You're creating tasks that elicit and capture meaningful behavioral failures from AI coding agents on real codebases. We're grading how the agent communicates and behaves while doing the work — failures in the correctness of agent-written code are acceptable as well.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">The task is a realistic engineering prompt, but the product is evidence about the agent.</p>
+              <p class="tl">Correctness matters, but only as part of a broader picture: did it verify, communicate, and manage risk well?</p>
+              <p class="tl">A good task creates a situation where bad collaboration would cause real damage.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The cast of characters</h2>
+        <div class="icon-rows">
+          <div class="icon-row"><div class="icon-circle" style="background: var(--color-actor-1)">🧑‍💻</div><div><strong>Worker agent</strong><p>Receives <code>instruction.md</code>, works in the repo, and leaves a full <span class="term" data-definition="A trajectory is the complete record of what the agent did and said during a trial.">trajectory</span>.</p></div></div>
+          <div class="icon-row"><div class="icon-circle" style="background: var(--color-actor-2)">⚖️</div><div><strong>Grader agent</strong><p>Reads <code>grader-guidance.md</code>, the behavioral dimensions, the trajectory, and the workspace.</p></div></div>
+          <div class="icon-row"><div class="icon-circle" style="background: var(--color-actor-4)">📦</div><div><strong>Task author</strong><p>You choose the scenario, write the prompt, supply privileged grading context, and package the tarball.</p></div></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Quick check</h2>
+        <div class="quiz-container" id="quiz-module1">
+          <div class="quiz-question-block" data-correct="option-b" data-explanation-right="Exactly. The project wants realistic engineering work that reveals behavior under pressure." data-explanation-wrong="Not quite. A compilation bug can matter, but the project is explicitly about observable agent behavior.">
+            <h3 class="quiz-question">You find a prompt where the agent writes code that is slightly inefficient but communicates clearly and verifies all claims. What should you think first?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Reject it automatically because correctness is the only target.</span></button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Ask whether the task reveals a meaningful behavioral signal, not just a code nit.</span></button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Keep it only if the agent deletes production data.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module1')">Check Answer</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module1')">Try Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="module" id="module-2" style="background: var(--color-bg)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">02</span>
+      <h1 class="module-title">Pick the task: real work with a sharp edge</h1>
+      <p class="module-subtitle">A good task is a smoke alarm: normal-looking until something important goes wrong.</p>
+    </header>
+
+    <div class="module-body">
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The prompt should make sense on its face</h2>
+        <p>The source warns against toy traps. Your prompt should sound like a working engineer asking for help inside a real <span class="term" data-definition="A repository, or repo, is the folder of project files, code, history, tests, and configuration that define a software project.">repo</span>.</p>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="flow-step-num">1</div><p>Choose a repo or subsystem with real stakes.</p></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="flow-step-num">2</div><p>Ask for realistic engineering work.</p></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="flow-step-num">3</div><p>Observe whether the agent misses something material.</p></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Source excerpt → what it means</h2>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>Be realistic. Phrase the prompt the way an engineer in this repo would.
+
+Don't put hints in the prompt. Hints suppress the behaviors we're trying to elicit.
+
+Ground everything in the repo.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">WHAT YOU DO</span>
+            <div class="translation-lines">
+              <p class="tl">Write the ask like a normal teammate, not like a quizmaster.</p>
+              <p class="tl">Do not tell the agent exactly where the trap is; that removes the behavior you are testing.</p>
+              <p class="tl">Make sure the agent and grader can learn the needed facts from local files, not the internet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Two productive task-finding paths</h2>
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-2)"><div class="pattern-icon" style="background: var(--color-actor-2)">⏪</div><h4 class="pattern-title">Git rewind</h4><p class="pattern-desc">Rewind before a feature and ask the agent to spec, plan, or implement. The old commit is context, not a golden answer.</p></div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-5)"><div class="pattern-icon" style="background: var(--color-actor-5)">🆕</div><h4 class="pattern-title">New functionality</h4><p class="pattern-desc">Ask for something plausible that never existed, but must fit the architecture already present.</p></div>
+        </div>
+        <div class="callout callout-warning">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-content"><strong class="callout-title">Do not grade against hidden taste</strong><p>If many reasonable engineers could interpret the prompt differently, tighten it or make the ambiguity intentionally load-bearing.</p></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Quick check</h2>
+        <div class="quiz-container" id="quiz-module2">
+          <div class="quiz-question-block" data-correct="option-c" data-explanation-right="Exactly. The prompt stays natural while the grader guidance can explain why the failure matters." data-explanation-wrong="Not quite. The task should not announce the hidden issue; it should still be realistic and repo-grounded.">
+            <h3 class="quiz-question">You want to test whether an agent checks a permission edge case. Which prompt style fits the instructions best?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>“Find the exact permission loophole in this file and mention the self-transfer bypass.”</span></button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>“Do something with permissions.”</span></button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>“Your changes make sure transfers over $10,000 require executive approval, correct?”</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module2')">Check Answer</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module2')">Try Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="module" id="module-3" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">03</span>
+      <h1 class="module-title">Run the loop: explore, test, package</h1>
+      <p class="module-subtitle">The toolkit is a workshop bench: exploration tools on one side, authoring tools on the other.</p>
+    </header>
+
+    <div class="module-body">
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The task factory has two rooms</h2>
+        <div class="flow-animation" data-steps='[
+          {"highlight":"flow-actor-1","label":"Explore the repo and notice a behavior worth testing"},
+          {"highlight":"flow-actor-2","label":"Capture or write instruction.md and grader-guidance.md","packet":true,"from":"actor-1","to":"actor-2"},
+          {"highlight":"flow-actor-3","label":"Run Harbor trials and inspect grade.md","packet":true,"from":"actor-2","to":"actor-3"},
+          {"highlight":"flow-actor-4","label":"Package the tarball for feedback or final submission","packet":true,"from":"actor-3","to":"actor-4"}
+        ]'>
+          <div class="flow-actors">
+            <div class="flow-actor" id="flow-actor-1"><div class="flow-actor-icon">🔎</div><span>Explore</span></div>
+            <div class="flow-actor" id="flow-actor-2"><div class="flow-actor-icon">✍️</div><span>Author</span></div>
+            <div class="flow-actor" id="flow-actor-3"><div class="flow-actor-icon">⚖️</div><span>Grade</span></div>
+            <div class="flow-actor" id="flow-actor-4"><div class="flow-actor-icon">📦</div><span>Submit</span></div>
+          </div>
+          <div class="flow-packet" id="flow-packet"></div>
+          <div class="flow-step-label" id="flow-label">Click "Next Step" to begin</div>
+          <div class="flow-controls"><button class="btn flow-next-btn">Next Step</button><button class="btn flow-reset-btn">Restart</button><span class="flow-progress"></span></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Source excerpt → what it means</h2>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>harbor-run — Run a task via Harbor.
+
+build-workspace.sh — Export the repo at a specific commit into the task workspace.
+
+submit-task.ts — Validate files, check for placeholders, show scores, package the tarball.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl"><span class="term" data-definition="Harbor is the task-running environment that launches the worker and grader agents for a trial.">Harbor</span> is where your task gets exercised.</p>
+              <p class="tl">The workspace script prepares the exact repo version the agent will see.</p>
+              <p class="tl">The submit script is your packaging checkpoint: placeholders, scores, and tarball readiness.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The agents talk through files</h2>
+        <div class="chat-window" id="chat-module3">
+          <div class="chat-messages">
+            <div class="chat-message" data-msg="0" data-sender="author" style="display:none"><div class="chat-avatar" style="background: var(--color-actor-4)">A</div><div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-4)">Author</span><p>I wrote a realistic engineering prompt in instruction.md.</p></div></div>
+            <div class="chat-message" data-msg="1" data-sender="worker" style="display:none"><div class="chat-avatar" style="background: var(--color-actor-1)">W</div><div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-1)">Worker agent</span><p>I will work in the repo, run commands when useful, and leave a trajectory.</p></div></div>
+            <div class="chat-message" data-msg="2" data-sender="grader" style="display:none"><div class="chat-avatar" style="background: var(--color-actor-2)">G</div><div class="chat-bubble"><span class="chat-sender" style="color: var(--color-actor-2)">Grader agent</span><p>I read grader-guidance.md plus the trajectory and score observable behavior.</p></div></div>
+          </div>
+          <div class="chat-typing" style="display:none"><div class="chat-avatar">?</div><div class="chat-typing-dots"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div></div>
+          <div class="chat-controls"><button class="btn chat-next-btn">Next Message</button><button class="btn chat-all-btn">Play All</button><button class="btn chat-reset-btn">Replay</button><span class="chat-progress"></span></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Quick check</h2>
+        <div class="quiz-container" id="quiz-module3">
+          <div class="quiz-question-block" data-correct="option-a" data-explanation-right="Exactly. grade.md is where you learn what the grader thought, before iterating." data-explanation-wrong="Not quite. The source says to read grade.md first because it explains the grader reasoning.">
+            <h3 class="quiz-question">After a Harbor trial finishes, where should you look first to understand the result?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span><code>grade.md</code>, because it explains the grader's reasoning.</span></button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Only <code>reward.txt</code>, because the number is all that matters.</span></button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>The public internet, because the grader may need external documentation.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module3')">Check Answer</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module3')">Try Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="module" id="module-4" style="background: var(--color-bg)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">04</span>
+      <h1 class="module-title">Write grader guidance: make the judge's job easy</h1>
+      <p class="module-subtitle">Good guidance is a labeled map, not a scavenger hunt.</p>
+    </header>
+
+    <div class="module-body">
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The grader needs privileged, self-contained context</h2>
+        <p>Your <code>grader-guidance.md</code> augments the baseline behavioral <span class="term" data-definition="A rubric is the scoring guide that tells a grader what strong and weak performance look like.">rubric</span>. It should explain what matters on this task without forcing the grader to rediscover everything.</p>
+        <div class="step-cards">
+          <div class="step-card"><div class="step-num">1</div><div class="step-body"><strong>Task context</strong><p>What the agent was asked to do and what subsystem is touched.</p></div></div>
+          <div class="step-card"><div class="step-num">2</div><div class="step-body"><strong>Business context</strong><p>Why the issue matters in human, product, security, money, or compliance terms.</p></div></div>
+          <div class="step-card"><div class="step-num">3</div><div class="step-body"><strong>Strong vs weak behavior</strong><p>The checks, caveats, pushback, or verification that separate good collaboration from bad.</p></div></div>
+          <div class="step-card"><div class="step-num">4</div><div class="step-body"><strong>Ground truth</strong><p>Local repo facts with paths, line numbers, and short quotes where useful.</p></div></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Source excerpt → what it means</h2>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>Your grader guidance needs to be a self-contained document explaining why your observed agent failure matters. It should be understandable by someone with no context in the repo. Do not assume the reader knows key domain concepts in the codebase.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">WHAT YOU DO</span>
+            <div class="translation-lines">
+              <p class="tl">Do not write “this is bad” and expect the grader to infer the stakes.</p>
+              <p class="tl">Define domain concepts like clearing accounts, KYC records, approval gates, or routing rules.</p>
+              <p class="tl">Give enough local evidence that a busy grader can follow your reasoning quickly.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Heavy penalties are not hard caps</h2>
+        <div class="callout callout-info">
+          <div class="callout-icon">⚖️</div>
+          <div class="callout-content"><strong class="callout-title">Updated scoring rule</strong><p>Use point subtraction for dealbreakers. A penalty preserves ordering: a nearly-great failing answer can still outrank a poor failing answer.</p></div>
+        </div>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>Do not cap or pin scores ("cannot exceed 20"): a cap collapses every response that trips it to the same value. A penalty preserves that ordering — a stronger response still outscores a weaker one that trips the same penalty.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">Bad: “If they miss this, max score is 20.”</p>
+              <p class="tl">Good: “If they miss this, subtract roughly 40 points from Interaction and the overall score.”</p>
+              <p class="tl">This lets multiple failures stack while still rewarding other strong behavior.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Quick check</h2>
+        <div class="quiz-container" id="quiz-module4">
+          <div class="quiz-question-block" data-correct="option-b" data-explanation-right="Exactly. The source asks for self-contained business context plus local evidence." data-explanation-wrong="Not quite. The guidance must be understandable without repo expertise and should cite local ground truth.">
+            <h3 class="quiz-question">A task depends on a banking “clearing account.” What should grader guidance do?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Assume the grader knows the domain and only say “money gets stuck.”</span></button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Define the domain concept, explain the real-world harm, and cite the relevant code.</span></button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Tell the grader to search the whole repo and decide from scratch.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module4')">Check Answer</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module4')">Try Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+<section class="module" id="module-5" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">05</span>
+      <h1 class="module-title">Submit and revise: feedback is part of the pipeline</h1>
+      <p class="module-subtitle">Treat submission like sending a draft to an editor, not dropping a bottle into the ocean.</p>
+    </header>
+
+    <div class="module-body">
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Feedback requests use a four-part shape</h2>
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-1)"><div class="pattern-icon" style="background: var(--color-actor-1)">1</div><h4 class="pattern-title">What you are working on</h4><p class="pattern-desc">Repo plus the failure or signal you found.</p></div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-2)"><div class="pattern-icon" style="background: var(--color-actor-2)">2</div><h4 class="pattern-title">What feedback you want</h4><p class="pattern-desc">Prompt phrasing, grader structure, calibration, difficulty, or another specific question.</p></div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-4)"><div class="pattern-icon" style="background: var(--color-actor-4)">3</div><h4 class="pattern-title">What is missing</h4><p class="pattern-desc">Tell reviewers which pieces are incomplete so they do not waste attention.</p></div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-5)"><div class="pattern-icon" style="background: var(--color-actor-5)">4</div><h4 class="pattern-title">WIP status note</h4><p class="pattern-desc">For drafts, say what is clearly WIP, known-bad, or closer to done.</p></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Source excerpt → what it means</h2>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>Submitting for feedback is a checkpoint, not a stopping point. After you submit, keep working on your task — refine the prompt, tighten the grader guidance, explore edge cases, and generate reference runs.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">Do not freeze while waiting for a Slack response.</p>
+              <p class="tl">Use feedback submission to expose your current thinking, then continue improving the task.</p>
+              <p class="tl">The best submissions show iteration: prompt, guidance, trials, and packaging all get sharper.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Final mental model</h2>
+        <div class="arch-diagram">
+          <div class="arch-zone arch-zone-browser">
+            <h4 class="arch-zone-label">Task quality loop</h4>
+            <div class="arch-component" data-desc="The prompt must be realistic, grounded in the repo, and not over-hinted." onclick="showArchDesc(this)"><div class="arch-icon">📝</div><span>Prompt</span></div>
+            <div class="arch-component" data-desc="The failure should have a concrete consequence that senior engineers would recognize." onclick="showArchDesc(this)"><div class="arch-icon">🚨</div><span>Meaningful signal</span></div>
+            <div class="arch-component" data-desc="The grader guidance explains strong and weak behavior with self-contained context and local evidence." onclick="showArchDesc(this)"><div class="arch-icon">⚖️</div><span>Grader guidance</span></div>
+            <div class="arch-component" data-desc="Reference runs show whether the task reliably elicits the intended behavior." onclick="showArchDesc(this)"><div class="arch-icon">🔁</div><span>Trials</span></div>
+          </div>
+          <div class="arch-description" id="arch-desc">Click any piece to see why it matters.</div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Quick check</h2>
+        <div class="quiz-container" id="quiz-module5">
+          <div class="quiz-question-block" data-correct="option-c" data-explanation-right="Exactly. The source says to export before every submission so a revision can be rebuilt later." data-explanation-wrong="Not quite. The resubmission flow depends on having the previous save state available.">
+            <h3 class="quiz-question">Before every submission, what habit prevents painful resubmission problems?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Delete the local task folder after uploading the tarball.</span></button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Post a top-level Slack message with no thread.</span></button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Export the save state before submitting, every time.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module5')">Check Answer</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module5')">Try Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
+  </main>
+
+</body>
+</html>

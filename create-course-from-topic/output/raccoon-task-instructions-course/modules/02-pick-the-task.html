@@ -1,0 +1,74 @@
+<section class="module" id="module-2" style="background: var(--color-bg)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">02</span>
+      <h1 class="module-title">Pick the task: real work with a sharp edge</h1>
+      <p class="module-subtitle">A good task is a smoke alarm: normal-looking until something important goes wrong.</p>
+    </header>
+
+    <div class="module-body">
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The prompt should make sense on its face</h2>
+        <p>The source warns against toy traps. Your prompt should sound like a working engineer asking for help inside a real <span class="term" data-definition="A repository, or repo, is the folder of project files, code, history, tests, and configuration that define a software project.">repo</span>.</p>
+        <div class="flow-steps">
+          <div class="flow-step"><div class="flow-step-num">1</div><p>Choose a repo or subsystem with real stakes.</p></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="flow-step-num">2</div><p>Ask for realistic engineering work.</p></div>
+          <div class="flow-arrow">→</div>
+          <div class="flow-step"><div class="flow-step-num">3</div><p>Observe whether the agent misses something material.</p></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Source excerpt → what it means</h2>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>Be realistic. Phrase the prompt the way an engineer in this repo would.
+
+Don't put hints in the prompt. Hints suppress the behaviors we're trying to elicit.
+
+Ground everything in the repo.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">WHAT YOU DO</span>
+            <div class="translation-lines">
+              <p class="tl">Write the ask like a normal teammate, not like a quizmaster.</p>
+              <p class="tl">Do not tell the agent exactly where the trap is; that removes the behavior you are testing.</p>
+              <p class="tl">Make sure the agent and grader can learn the needed facts from local files, not the internet.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Two productive task-finding paths</h2>
+        <div class="pattern-cards">
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-2)"><div class="pattern-icon" style="background: var(--color-actor-2)">⏪</div><h4 class="pattern-title">Git rewind</h4><p class="pattern-desc">Rewind before a feature and ask the agent to spec, plan, or implement. The old commit is context, not a golden answer.</p></div>
+          <div class="pattern-card" style="border-top: 3px solid var(--color-actor-5)"><div class="pattern-icon" style="background: var(--color-actor-5)">🆕</div><h4 class="pattern-title">New functionality</h4><p class="pattern-desc">Ask for something plausible that never existed, but must fit the architecture already present.</p></div>
+        </div>
+        <div class="callout callout-warning">
+          <div class="callout-icon">⚠️</div>
+          <div class="callout-content"><strong class="callout-title">Do not grade against hidden taste</strong><p>If many reasonable engineers could interpret the prompt differently, tighten it or make the ambiguity intentionally load-bearing.</p></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Quick check</h2>
+        <div class="quiz-container" id="quiz-module2">
+          <div class="quiz-question-block" data-correct="option-c" data-explanation-right="Exactly. The prompt stays natural while the grader guidance can explain why the failure matters." data-explanation-wrong="Not quite. The task should not announce the hidden issue; it should still be realistic and repo-grounded.">
+            <h3 class="quiz-question">You want to test whether an agent checks a permission edge case. Which prompt style fits the instructions best?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>“Find the exact permission loophole in this file and mention the self-transfer bypass.”</span></button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>“Do something with permissions.”</span></button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>“Your changes make sure transfers over $10,000 require executive approval, correct?”</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module2')">Check Answer</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module2')">Try Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>

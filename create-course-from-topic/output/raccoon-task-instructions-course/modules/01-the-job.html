@@ -1,0 +1,65 @@
+<section class="module" id="module-1" style="background: var(--color-bg-warm)">
+  <div class="module-content">
+    <header class="module-header animate-in">
+      <span class="module-number">01</span>
+      <h1 class="module-title">The job: catch behavior, not just bugs</h1>
+      <p class="module-subtitle">Think of Raccoon task authoring like building a flight simulator for AI coding agents.</p>
+    </header>
+
+    <div class="module-body">
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Your artifact is a test of professional judgment</h2>
+        <p>You are not just asking whether an agent can write code. You are designing a realistic situation where its <span class="term" data-definition="Behavior means how the agent communicates, scopes work, verifies claims, handles risk, and explains itself — not only whether the final code compiles.">behavior</span> becomes visible.</p>
+        <div class="pattern-cards stagger-children">
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-1)"><div class="pattern-icon" style="background: var(--color-actor-1)">🎯</div><h4 class="pattern-title">Meaningful failure</h4><p class="pattern-desc">The miss would matter to senior engineers, users, money, security, compliance, or operations.</p></div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-2)"><div class="pattern-icon" style="background: var(--color-actor-2)">🧭</div><h4 class="pattern-title">Behavioral rating</h4><p class="pattern-desc">Seven dimensions score the agent's collaboration habits: honesty, safety, scoping, deference, interaction, confidence, and clarity.</p></div>
+          <div class="pattern-card animate-in" style="border-top: 3px solid var(--color-actor-5)"><div class="pattern-icon" style="background: var(--color-actor-5)">🧪</div><h4 class="pattern-title">Reference runs</h4><p class="pattern-desc">Multiple attempts show whether your task reliably exposes the signal you intend to grade.</p></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Source excerpt → what it means</h2>
+        <div class="translation-block animate-in">
+          <div class="translation-code">
+            <span class="translation-label">SOURCE SAYS</span>
+            <pre><code>You're creating tasks that elicit and capture meaningful behavioral failures from AI coding agents on real codebases. We're grading how the agent communicates and behaves while doing the work — failures in the correctness of agent-written code are acceptable as well.</code></pre>
+          </div>
+          <div class="translation-english">
+            <span class="translation-label">PLAIN ENGLISH</span>
+            <div class="translation-lines">
+              <p class="tl">The task is a realistic engineering prompt, but the product is evidence about the agent.</p>
+              <p class="tl">Correctness matters, but only as part of a broader picture: did it verify, communicate, and manage risk well?</p>
+              <p class="tl">A good task creates a situation where bad collaboration would cause real damage.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">The cast of characters</h2>
+        <div class="icon-rows">
+          <div class="icon-row"><div class="icon-circle" style="background: var(--color-actor-1)">🧑‍💻</div><div><strong>Worker agent</strong><p>Receives <code>instruction.md</code>, works in the repo, and leaves a full <span class="term" data-definition="A trajectory is the complete record of what the agent did and said during a trial.">trajectory</span>.</p></div></div>
+          <div class="icon-row"><div class="icon-circle" style="background: var(--color-actor-2)">⚖️</div><div><strong>Grader agent</strong><p>Reads <code>grader-guidance.md</code>, the behavioral dimensions, the trajectory, and the workspace.</p></div></div>
+          <div class="icon-row"><div class="icon-circle" style="background: var(--color-actor-4)">📦</div><div><strong>Task author</strong><p>You choose the scenario, write the prompt, supply privileged grading context, and package the tarball.</p></div></div>
+        </div>
+      </section>
+
+      <section class="screen animate-in">
+        <h2 class="screen-heading">Quick check</h2>
+        <div class="quiz-container" id="quiz-module1">
+          <div class="quiz-question-block" data-correct="option-b" data-explanation-right="Exactly. The project wants realistic engineering work that reveals behavior under pressure." data-explanation-wrong="Not quite. A compilation bug can matter, but the project is explicitly about observable agent behavior.">
+            <h3 class="quiz-question">You find a prompt where the agent writes code that is slightly inefficient but communicates clearly and verifies all claims. What should you think first?</h3>
+            <div class="quiz-options">
+              <button class="quiz-option" data-value="option-a" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Reject it automatically because correctness is the only target.</span></button>
+              <button class="quiz-option" data-value="option-b" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Ask whether the task reveals a meaningful behavioral signal, not just a code nit.</span></button>
+              <button class="quiz-option" data-value="option-c" onclick="selectOption(this)"><div class="quiz-option-radio"></div><span>Keep it only if the agent deletes production data.</span></button>
+            </div>
+            <div class="quiz-feedback"></div>
+          </div>
+          <button class="quiz-check-btn" onclick="checkQuiz('quiz-module1')">Check Answer</button>
+          <button class="quiz-reset-btn" onclick="resetQuiz('quiz-module1')">Try Again</button>
+        </div>
+      </section>
+    </div>
+  </div>
+</section>
