@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NearBeach - Task List View Wireframe</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; }
+        body { background: #f5f6f8; min-height: 100vh; padding: 20px; }
+        .container { max-width: 1400px; margin: 0 auto; background: white; border-radius: 8px; box-shadow: 0 1px 3px rgba(0,0,0,0.1); overflow: hidden; }
+        
+        /* Header */
+        .header { padding: 20px 24px; border-bottom: 1px solid #e1e4e8; display: flex; justify-content: space-between; align-items: center; }
+        .header h1 { font-size: 1.5rem; font-weight: 600; color: #24292e; }
+        .btn { padding: 8px 16px; border-radius: 6px; font-size: 0.875rem; font-weight: 500; cursor: pointer; border: none; transition: all 0.15s; }
+        .btn-primary { background: #0366d6; color: white; }
+        .btn-primary:hover { background: #0256c7; }
+        .btn-secondary { background: #fafbfc; color: #24292e; border: 1px solid #e1e4e8; }
+        .btn-secondary:hover { background: #f3f4f6; }
+        
+        /* Main Layout */
+        .main { display: flex; min-height: 600px; }
+        
+        /* Filter Sidebar */
+        .sidebar { width: 280px; border-right: 1px solid #e1e4e8; padding: 20px; background: #fafbfc; overflow-y: auto; }
+        .filter-section { margin-bottom: 24px; }
+        .filter-section h3 { font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: #586069; margin-bottom: 12px; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 0.875rem; font-weight: 500; color: #24292e; margin-bottom: 6px; }
+        .form-control { width: 100%; padding: 8px 12px; border: 1px solid #e1e4e8; border-radius: 6px; font-size: 0.875rem; background: white; }
+        .form-control:focus { outline: none; border-color: #0366d6; box-shadow: 0 0 0 3px rgba(3,102,214,0.15); }
+        .checkbox-group { display: flex; flex-direction: column; gap: 8px; }
+        .checkbox-label { display: flex; align-items: center; gap: 8px; font-size: 0.875rem; color: #24292e; cursor: pointer; }
+        .checkbox-label input { width: 16px; height: 16px; accent-color: #0366d6; }
+        .date-range { display: flex; gap: 8px; }
+        .date-range .form-control { flex: 1; }
+        .filter-actions { display: flex; gap: 8px; margin-top: 24px; padding-top: 16px; border-top: 1px solid #e1e4e8; }
+        
+        /* Table Area */
+        .table-area { flex: 1; padding: 20px 24px; overflow-x: auto; }
+        .table-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .results-info { font-size: 0.875rem; color: #586069; }
+        .page-size select { padding: 6px 10px; border: 1px solid #e1e4e8; border-radius: 6px; font-size: 0.875rem; background: white; }
+        
+        table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        th { text-align: left; padding: 12px 16px; font-weight: 600; color: #586069; background: #fafbfc; border-bottom: 1px solid #e1e4e8; white-space: nowrap; cursor: pointer; user-select: none; transition: background 0.15s; }
+        th:hover { background: #f3f4f6; }
+        th.sorted-asc::after { content: " ▲"; font-size: 0.7rem; color: #0366d6; }
+        th.sorted-desc::after { content: " ▼"; font-size: 0.7rem; color: #0366d6; }
+        td { padding: 12px 16px; border-bottom: 1px solid #e1e4e8; color: #24292e; vertical-align: middle; }
+        tr:hover td { background: #fafbfc; }
+        
+        /* Status Badges */
+        .badge { display: inline-block; padding: 3px 8px; border-radius: 12px; font-size: 0.75rem; font-weight: 500; text-transform: capitalize; }
+        .badge-todo { background: #fff3cd; color: #856404; }
+        .badge-in-progress { background: #cce5ff; color: #004085; }
+        .badge-review { background: #e2d9f3; color: #5a32a3; }
+        .badge-done { background: #d4edda; color: #155724; }
+        .badge-blocked { background: #f8d7da; color: #721c24; }
+        
+        /* Priority */
+        .priority { display: inline-flex; align-items: center; gap: 4px; font-size: 0.8125rem; font-weight: 500; }
+        .priority-high { color: #cb2431; }
+        .priority-medium { color: #e67e22; }
+        .priority-low { color: #28a745; }
+        .priority-indicator { width: 8px; height: 8px; border-radius: 50%; }
+        .priority-high .priority-indicator { background: #cb2431; }
+        .priority-medium .priority-indicator { background: #e67e22; }
+        .priority-low .priority-indicator { background: #28a745; }
+        
+        /* Pagination */
+        .pagination { display: flex; justify-content: center; align-items: center; gap: 4px; margin-top: 20px; padding-top: 16px; border-top: 1px solid #e1e4e8; }
+        .pagination button { min-width: 36px; height: 36px; padding: 0 12px; border: 1px solid #e1e4e8; background: white; border-radius: 6px; font-size: 0.875rem; color: #24292e; cursor: pointer; transition: all 0.15s; }
+        .pagination button:hover:not(:disabled) { background: #f3f4f6; border-color: #d1d5da; }
+        .pagination button.active { background: #0366d6; color: white; border-color: #0366d6; }
+        .pagination button:disabled { opacity: 0.5; cursor: not-allowed; }
+        .pagination .ellipsis { padding: 0 8px; color: #586069; }
+        
+        /* Empty State */
+        .empty-state { text-align: center; padding: 60px 20px; color: #586069; }
+        .empty-state svg { width: 64px; height: 64px; margin-bottom: 16px; opacity: 0.5; }
+        .empty-state h3 { font-size: 1.125rem; font-weight: 600; color: #24292e; margin-bottom: 8px; }
+        
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .main { flex-direction: column; }
+            .sidebar { width: 100%; border-right: none; border-bottom: 1px solid #e1e4e8; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>All Tasks</h1>
+            <button class="btn btn-primary">+ New Task</button>
+        </header>
+        
+        <!-- Main Content -->
+        <div class="main">
+            <!-- Filter Sidebar -->
+            <aside class="sidebar">
+                <div class="filter-section">
+                    <h3>Status</h3>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label"><input type="checkbox" name="status" value="todo"> To Do</label>
+                        <label class="checkbox-label"><input type="checkbox" name="status" value="in_progress"> In Progress</label>
+                        <label class="checkbox-label"><input type="checkbox" name="status" value="review"> In Review</label>
+                        <label class="checkbox-label"><input type="checkbox" name="status" value="done"> Done</label>
+                        <label class="checkbox-label"><input type="checkbox" name="status" value="blocked"> Blocked</label>
+                    </div>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Assignee</h3>
+                    <select class="form-control" id="assignee-filter">
+                        <option value="">All Assignees</option>
+                        <option value="1">Alex Johnson</option>
+                        <option value="2">Sam Chen</option>
+                        <option value="3">Maria Rodriguez</option>
+                        <option value="4">James Wilson</option>
+                        <option value="unassigned">Unassigned</option>
+                    </select>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Project</h3>
+                    <select class="form-control" id="project-filter">
+                        <option value="">All Projects</option>
+                        <option value="1">Website Redesign</option>
+                        <option value="2">API v2 Migration</option>
+                        <option value="3">Mobile App Launch</option>
+                        <option value="4">Security Audit</option>
+                    </select>
+                </div>
+                
+                <div class="filter-section">
+                    <h3>Date Range</h3>
+                    <div class="form-group">
+                        <label>Start Date</label>
+                        <div class="date-range">
+                            <input type="date" class="form-control" id="start-date">
+                            <input type="date" class="form-control" id="end-date">
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="filter-actions">
+                    <button class="btn btn-secondary" style="flex: 1">Clear Filters</button>
+                    <button class="btn btn-primary" style="flex: 1">Apply</button>
+                </div>
+            </aside>
+            
+            <!-- Task Table -->
+            <section class="table-area">
+                <div class="table-header">
+                    <span class="results-info">Showing 1–25 of 142 tasks</span>
+                    <div class="page-size">
+                        <select id="page-size">
+                            <option value="10">10 per page</option>
+                            <option value="25" selected>25 per page</option>
+                            <option value="50">50 per page</option>
+                            <option value="100">100 per page</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <table id="task-table">
+                    <thead>
+                        <tr>
+                            <th data-sort="title">Title</th>
+                            <th data-sort="status">Status</th>
+                            <th data-sort="priority">Priority</th>
+                            <th data-sort="assignee">Assignee</th>
+                            <th data-sort="project">Project</th>
+                            <th data-sort="start_date">Start Date</th>
+                            <th data-sort="end_date">End Date</th>
+                            <th data-sort="created">Created</th>
+                            <th style="width: 60px;">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Design new dashboard layout</strong><br><span style="font-size:0.75rem;color:#586069">#T-1247</span></td>
+                            <td><span class="badge badge-in-progress">In Progress</span></td>
+                            <td><span class="priority priority-high"><span class="priority-indicator"></span>High</span></td>
+                            <td>Alex Johnson</td>
+                            <td>Website Redesign</td>
+                            <td>2025-10-15</td>
+                            <td>2025-11-01</td>
+                            <td>2025-10-10</td>
+                            <td><button class="btn btn-secondary" style="padding:4px 8px;font-size:0.75rem">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Implement JWT authentication</strong><br><span style="font-size:0.75rem;color:#586069">#T-1245</span></td>
+                            <td><span class="badge badge-todo">To Do</span></td>
+                            <td><span class="priority priority-high"><span class="priority-indicator"></span>High</span></td>
+                            <td>Sam Chen</td>
+                            <td>API v2 Migration</td>
+                            <td>2025-10-20</td>
+                            <td>2025-10-30</td>
+                            <td>2025-10-12</td>
+                            <td><button class="btn btn-secondary" style="padding:4px 8px;font-size:0.75rem">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Write API documentation</strong><br><span style="font-size:0.75rem;color:#586069">#T-1242</span></td>
+                            <td><span class="badge badge-review">In Review</span></td>
+                            <td><span class="priority priority-medium"><span class="priority-indicator"></span>Medium</span></td>
+                            <td>Maria Rodriguez</td>
+                            <td>API v2 Migration</td>
+                            <td>2025-10-01</td>
+                            <td>2025-10-25</td>
+                            <td>2025-09-28</td>
+                            <td><button class="btn btn-secondary" style="padding:4px 8px;font-size:0.75rem">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Setup CI/CD pipeline</strong><br><span style="font-size:0.75rem;color:#586069">#T-1238</span></td>
+                            <td><span class="badge badge-done">Done</span></td>
+                            <td><span class="priority priority-medium"><span class="priority-indicator"></span>Medium</span></td>
+                            <td>James Wilson</td>
+                            <td>Mobile App Launch</td>
+                            <td>2025-09-15</td>
+                            <td>2025-10-05</td>
+                            <td>2025-09-10</td>
+                            <td><button class="btn btn-secondary" style="padding:4px 8px;font-size:0.75rem">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fix memory leak in data processor</strong><br><span style="font-size:0.75rem;color:#586069">#T-1235</span></td>
+                            <td><span class="badge badge-blocked">Blocked</span></td>
+                            <td><span class="priority priority-high"><span class="priority-indicator"></span>High</span></td>
+                            <td>Alex Johnson</td>
+                            <td>Security Audit</td>
+                            <td>2025-10-05</td>
+                            <td>2025-10-20</td>
+                            <td>2025-10-01</td>
+                            <td><button class="btn btn-secondary" style="padding:4px 8px;font-size:0.75rem">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Create user onboarding flow</strong><br><span style="font-size:0.75rem;color:#586069">#T-1231</span></td>
+                            <td><span class="badge badge-todo">To Do</span></td>
+                            <td><span class="priority priority-low"><span class="priority-indicator"></span>Low</span></td>
+                            <td>—</td>
+                            <td>Website Redesign</td>
+                            <td>2025-11-01</td>
+                            <td>2025-11-15</td>
+                            <td>2025-10-18</td>
+                            <td><button class="btn btn-secondary" style="padding:4px 8px;font-size:0.75rem">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Performance audit for dashboard</strong><br><span style="font-size:0.75rem;color:#586069">#T-1228</span></td>
+                            <td><span class="badge badge-in-progress">In Progress</span></td>
+                            <td><span class="priority priority-medium"><span class="priority-indicator"></span>Medium</span></td>
+                            <td>Sam Chen</td>
+                            <td>Website Redesign</td>
+                            <td>2025-10-18</td>
+                            <td>2025-11-05</td>
+                            <td>2025-10-15</td>
+                            <td><button class="btn btn-secondary" style="padding:4px 8px;font-size:0.75rem">View</button></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Add dark mode support</strong><br><span style="font-size:0.75rem;color:#586069">#T-1224</span></td>
+                            <td><span class="badge badge-todo">To Do</span></td>
+                            <td><span class="priority priority-low"><span class="priority-indicator"></span>Low</span></td>
+                            <td>Maria Rodriguez</td>
+                            <td>Mobile App Launch</td>
+                            <td>2025-11-10</td>
+                            <td>2025-11-25</td>
+                            <td>2025-10-20</td>
+                            <td><button class="btn btn-secondary" style="padding:4px 8px;font-size:0.75rem">View</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <!-- Pagination -->
+                <nav class="pagination" aria-label="Task pagination">
+                    <button disabled>« Previous</button>
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>4</button>
+                    <button>5</button>
+                    <span class="ellipsis">…</button>
+                    <button>6</button>
+                    <button>Next »</button>
+                </nav>
+            </section>
+        </div>
+    </div>
+    
+    <script>
+        // Simple sort toggle demo
+        document.querySelectorAll('th[data-sort]').forEach(th => {
+            th.addEventListener('click', () => {
+                document.querySelectorAll('th[data-sort]').forEach(other => {
+                    if (other !== th) other.classList.remove('sorted-asc', 'sorted-desc');
+                });
+                if (th.classList.contains('sorted-asc')) {
+                    th.classList.replace('sorted-asc', 'sorted-desc');
+                } else {
+                    th.classList.add('sorted-asc');
+                    th.classList.remove('sorted-desc');
+                }
+            });
+        });
+        
+        // Page size change
+        document.getElementById('page-size').addEventListener('change', (e) => {
+            console.log('Page size changed to:', e.target.value);
+        });
+    </script>
+</body>
+</html>
